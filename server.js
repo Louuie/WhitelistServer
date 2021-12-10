@@ -1,4 +1,5 @@
 const express = require('express')
+const pug = require('pug')
 global.dotenv = require('dotenv')
 const app = express()
 
@@ -7,7 +8,7 @@ app.use(express.static('images'))
 app.use(express.urlencoded({ extended: true}))
 app.use(express.json())
 
-app.set('view engine', 'ejs')
+app.set('view engine', 'pug')
 
 
 const userRouter = require('./routes/users')
