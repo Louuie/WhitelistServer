@@ -1,7 +1,9 @@
 const express = require('express')
-const pug = require('pug')
-global.dotenv = require('dotenv')
 const app = express()
+const pug = require('pug')
+const userRouter = require('./routes/users')
+const whitelistRouter = require('./routes/whitelist')
+global.dotenv = require('dotenv')
 
 app.use(express.static('public'))
 app.use(express.static('images'))
@@ -10,9 +12,6 @@ app.use(express.json())
 
 app.set('view engine', 'pug')
 
-
-const userRouter = require('./routes/users')
-const whitelistRouter = require('./routes/whitelist')
 
 app.use('/users', userRouter)
 app.use('/whitelist', whitelistRouter)

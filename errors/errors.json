@@ -1,0 +1,6 @@
+{
+    "codes": {
+        "failed-login": 400,
+        "null-table": 405
+    }
+}

@@ -1,5 +1,6 @@
 const env = require('dotenv').config()
 const bcrypt = require('bcrypt')
+const error = require('../errors/errors.json')
 const users = []
 
 async function hashPassword(req, res, next) {
@@ -17,7 +18,7 @@ async function hashPassword(req, res, next) {
                 }
             } else {
                 console.log('Incorrect username and password')
-                res.redirect('failure')
+                res.redirect(`failure?error=${error.codes['failed-login']}`)
                 return next()
             }
         } catch {

@@ -1,5 +1,6 @@
 const express = require('express')
-const minecraft = require('../minecraft/minecraft.js')
+const mongodb = require('../database/mongo')
+const minecraft = require('../minecraft/minecraft')
 const router = express.Router()
 
 // Get Route used to Render a Form to a user - essentially taking them to localhost:3000/whitelist
@@ -8,7 +9,7 @@ router.get('/', (req, res) => {
 })
 
 // Post Route is what happens after the user sumbits a name/data
-router.post('/', minecraft.insertUUID, (req, res) => {
+router.post('/', minecraft.getUUID, mongodb.insertUUID, (req, res) => {
     res.redirect(`whitelist/success?name=${req.body.minecraftUsername}`)
 })
 
