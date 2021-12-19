@@ -5,11 +5,15 @@ html(lang='en')
     meta(http-equiv='X-UA-Compatible' content='IE-edge')
     meta(name='viewport' content='width-device-width, initial-scale=1.0')
     title Whitelist
+    img(src='https://i.imgur.com/rXbSS6s.png' id='minecraft-logo')
+    h1(id='title') Whitelist Minecraft Player
   body
-    form(action='/whitelist' method='post')
-      label Minecraft Username 
-      br
-      input(type='text' name='minecraftUsername' value=minecraftUsername)
-      br
-      button(type='submit') Submit
-      br
+  style
+    include ../styles/main.css
+    include ../styles/whitelist.css
+  form(action='/whitelist' method='post')
+    br
+    input(type='text' name='minecraftUsername' id='username' value=minecraftUsername placeholder='Enter your Minecraft Username')
+    br
+    button(type='submit' id='whitelist-button') Whitelist
+    br

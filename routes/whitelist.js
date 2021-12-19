@@ -10,13 +10,11 @@ router.get('/', (req, res) => {
 
 // Post Route is what happens after the user sumbits a name/data
 router.post('/', minecraft.getUUID, mongodb.insertUUID, (req, res) => {
-    res.redirect(`whitelist/success?name=${req.body.minecraftUsername}`)
+    res.redirect(`whitelist/user?name=${req.body.minecraftUsername}`)
 })
 
-
-// Get router request for the success page that is used if the player is successfully whitelisted and added to the database
-router.get('/success', minecraft.getAvatar, (req, res) => {
-    res.render('whitelist/success', {minecraftUsername: req.query.name, minecraftAvatar: req.minecraftAvatar})
+router.get('/user', mongodb.ifPlayerExists, minecraft.getAvatar, (req, res) => {
+    res.render('whitelist/user', {minecraftUsername: req.query.name, minecraftAvatar: req.minecraftAvatar})
 })
 
 

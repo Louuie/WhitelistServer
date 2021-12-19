@@ -2,6 +2,7 @@ const { MongoClient } = require('mongodb')
 const error = require('../errors/errors.json')
 const env = require('dotenv').config()
 const uri = process.env.MONGODB_URI
+const isEmpty = require('lodash.isempty')
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 
@@ -39,7 +40,8 @@ async function insertUUID(req, res, next) {
 }
 
 
-async function getWhitelistedPlayers(req, res, next) {
+// This method will get essentially list all the players on the localhost:3000/users/list page (used only for admins)
+async function getAllWhitelistedPlayers(req, res, next) {
     const collection = client.db(process.env.DB_NAME).collection(process.env.DB_COLLECTION)
     try {
         await client.connect()
@@ -54,4 +56,21 @@ async function getWhitelistedPlayers(req, res, next) {
 }
 
 
-module.exports = { insertUUID, getWhitelistedPlayers }
+// This method essentially returns a variable that is either true or false depending on whether that user exists in the DB
+async function ifPlayerExists(req, res, next) {
+    const collection = client.db(process.env.DB_NAME).collection(process.env.DB_COLLECTION)
+    try {
+        await client.connect()
+        collection.findOne({name: req.query.name}, function(err, result) {
+            //console.log(result)
+            if(result != null) {
+                return next()
+            } else { res.redirect('/whitelist') }
+        })
+    } catch(err) {
+        res.redirect(`failure?error=${error.codes['null-table']}`)
+    }
+ }
+
+
+module.exports = { insertUUID, getAllWhitelistedPlayers, ifPlayerExists }

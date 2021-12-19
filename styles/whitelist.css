@@ -1,0 +1,101 @@
+#minecraft-logo {
+    width: 7%;
+    height: 7%;
+    margin-top: 40px;
+    position: static;
+}
+
+#title {
+    margin: 0%;
+    color: white;
+    font-family: proxima-nova, Helvetica, sans-serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    line-height: 5.00rem;
+    letter-spacing: 1.3px;
+    position: static;
+    left: 15rem;
+    font-weight: extra-bold;
+}
+
+
+body {
+    text-align: center;
+    background-color: #232323;
+}
+
+
+form {
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+    top: -4rem;
+    left: 0.5rem;
+    margin: 5% auto;
+}
+
+#username {
+    width: 620px;
+    height: 32px;
+    background-color: #282828;
+    font-family: proxima-nova, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 400 !important;
+    padding-left: 10px;
+    padding:5px; 
+    color: white;
+    border-color: transparent;
+    transition-property: color, border-color;
+    -webkit-transition-property: color, border-color;
+    -moz-transition-property: color, border-color;
+    transition-duration: .25s;
+    transition-timing-function: ease;
+}
+
+#username:focus{
+    outline:none;
+    border:2px solid#49c02e;
+    color:#49c02e;
+    transition-property: color, border-color;
+    -webkit-transition-property: color, border-color;
+    -moz-transition-property: color, border-color;
+    transition-duration: .25s;
+    transition-timing-function: ease;
+    font-style: normal;
+    font-weight: 500;
+}
+
+#whitelist-button {
+    width: 633px;
+    height: 42px;
+    background: #43B02A;
+    border: 2px solid #338720;
+    color: white;
+    font-family: proxima-nova, Helvetica, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600 !important;
+    padding: 15px 32px;
+    line-height: 0.15em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 16px;
+    transition-property: color, border-color;
+    -webkit-transition-property: color, border-color;
+    -moz-transition-property: color, border-color;
+    transition-duration: .25s;
+    transition-timing-function: ease;
+    font-weight: 500;
+}
+
+#whitelist-button:hover {
+    background-color: #49c02e;
+    border-color: transparent;
+    cursor: pointer;
+    transition-property: color, border-color;
+    -webkit-transition-property: color, border-color;
+    -moz-transition-property: color, border-color;
+    transition-duration: .25s;
+    transition-timing-function: ease;
+    font-weight: 500;
+}
