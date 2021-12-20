@@ -1,70 +1,119 @@
-#bg-image {
-    position: relative;
+#top {
+    background: url('https://i.imgur.com/YBRuEOR.png') !important;
+    background: repeat-x; height: 173px;
 }
+
+
 
 #avatar {
     width: auto;
     height: auto;
     margin-left: auto;
-    margin-right: auto;
-    position: absolute;
-    margin-top: 2rem;
-    bottom: 66rem;
-    left: 14rem;
+    margin-right: 40rem;
+    position: static;
 }
 
-img {
-    position: absolute;
-    top: 25px;
-    left: 25px;
-  }
-  .bg {
-    z-index: 1;
-  }
-  .avatar {
-    z-index: 3;
-    left: 54rem;
-    top: 3rem;
-  }
 
+#player-txt {
+    position: static;
+    color: darkgreen;
+    font-family: proxima-nova, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    top: 20.5rem
+}
+
+#status-txt {
+    position: static;
+    color: darkgreen;
+    font-family: proxima-nova, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+}
 
 body {
     text-align: center;
-    background: no-repeat;
-    background-color: #232323;
+    background-color: #232323;;
     overflow-x: hidden;
-    position: relative;
 }
 
-body, h2, #user, #msg {
-    width: 100%;
-    height: 100%;
+#form {
+    min-width: 800px;
+    position: static;
+    margin-top: -10rem;    
 }
 
-h2 {
-    position: relative;
-    color: darkgreen;
+#username {
+    width: 420px;
+    height: 32px;
+    margin: 14px;
+    background-color: #202020;
     font-family: proxima-nova, Helvetica, sans-serif;
-    font-weight: 700;
-    font-size: 42px;
-}
-
-#user {
-    position: relative;
-    left: 61rem;
-    top: 7.3rem;
+    font-size: 36px;
+    font-weight: 700 !important;
+    text-align: center;
+    padding-left: 10px;
+    padding:5px; 
     color: white;
-    font-family: proxima-nova, Helvetica, sans-serif;
-    font-weight: 700;
-    font-size: 68px;
+    border-color: transparent;
+    transition-property: color, border-color;
+    -webkit-transition-property: color, border-color;
+    -moz-transition-property: color, border-color;
+    transition-duration: .25s;
+    transition-timing-function: ease;
 }
 
-#msg {
-    position: relative;
-    left: 76rem;
-    top: 10.7rem;
-    color: white;
+#username:hover{
+    outline:none;
+    border:2px solid#49c02e;
+    color:#49c02e;
+    transition-property: color, border-color;
+    -webkit-transition-property: color, border-color;
+    -moz-transition-property: color, border-color;
+    transition-duration: .25s;
+    transition-timing-function: ease;
+    font-style: normal;
+    font-weight: 500;
+    cursor: default;
+}
+
+#username:focus {
+    outline: none;
+}
+
+#status {
+    width: 435px;
+    height: 43px;
+    background-color: #202020;
     font-family: proxima-nova, Helvetica, sans-serif;
-    font-weight: 600;
-    font-size: 38px;
+    font-size: 24px;
+    font-weight: 600 !important;
+    text-align: center;
+    padding-left: 10px;
+    padding:5px;
+    color: white;
+    border-color: transparent;
+    transition-property: color, border-color;
+    -webkit-transition-property: color, border-color;
+    -moz-transition-property: color, border-color;
+    transition-duration: .25s;
+    transition-timing-function: ease;
+}
+
+#status:hover{
+    outline:none;
+    border:2px solid#ff0000;
+    color:#ff0000;
+    transition-property: color, border-color;
+    -webkit-transition-property: color, border-color;
+    -moz-transition-property: color, border-color;
+    transition-duration: .25s;
+    transition-timing-function: ease;
+    font-style: normal;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+#status:focus {
+    outline: none;
 }

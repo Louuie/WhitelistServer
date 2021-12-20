@@ -5,11 +5,14 @@ html(lang='en')
     meta(http-equiv='X-UA-Compatible' content='IE-edge')
     meta(name='viewport' content='width-device-width, initial-scale=1.0')
     title=minecraftUsername
+    .top(id='top')
+      img(src=minecraftAvatar id='avatar')
+      form(id='form' method='post')
+      br
+      input(type='text' name='minecraftUsername' id='username' value=minecraftUsername readonly)
+      br
+      button(type='submit' id='status') Not Whitelisted
   body
-  img.avatar(src=minecraftAvatar)
-  img.bg(src='https://i.imgur.com/wzegOBA.png', id='bg-image')
   style
     include ../../styles/main.css
     include ../../styles/user.css
-  p(id='user')=minecraftUsername
-  p(id='msg') has been whitelisted 

@@ -8,25 +8,22 @@ router.get('/', (req, res) => {
     res.render('whitelist')
 })
 
-// Post Route is what happens after the user sumbits a name/data
+// Post Route is what happens after the user submits a name/data
 router.post('/', minecraft.getUUID, mongodb.insertUUID, (req, res) => {
-    res.redirect(`whitelist/user?name=${req.body.minecraftUsername}`)
-})
-
-router.get('/user', mongodb.ifPlayerExists, minecraft.getAvatar, (req, res) => {
-    res.render('whitelist/user', {minecraftUsername: req.query.name, minecraftAvatar: req.minecraftAvatar})
+    res.redirect(`whitelist/${req.body.minecraftUsername}`)
 })
 
 
-// Get router request for the duplicate page that is used if the player is already whitelisted
-router.get('/duplicate', (req, res) => {
-    res.render('whitelist/duplicate')
+// localhost:3000/whitelist/username instead of localhost:3000/whitelist/user?name=username
+router.get('/:user', mongodb.ifPlayerExists, minecraft.getAvatar, (req, res) => {
+    res.render('whitelist/user', {minecraftUsername: req.params.user, minecraftAvatar: req.minecraftAvatar})
 })
 
-// Post router request for the duplicate page that is used when the button is pressed to render the whitelist form again
-router.post('/duplicate', (req, res) => {
-    res.render('whitelist', {minecraftUsername: req.query.name})
+router.post('/:user', minecraft.whitelistPlayer, (req, res) => {
+    res.send('test')
 })
+
+
 
 
 module.exports = router
