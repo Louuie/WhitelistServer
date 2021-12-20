@@ -23,13 +23,14 @@ async function getAvatar(req, res, next) {
 
 // THIS FUNCTION IS BEING USED IN A TESTING MANNER NOT ACTUALLY BEING USED IN EXPRESS
 async function whitelistPlayer(req, res, next) {
-    const server = new rcon(`${process.env.SERVER_IP}, ${process.env.SERVER_PORT}, ${process.env.SERVER_PASSWORD}`)
-    server.on('auth', function() {
+    const server = new rcon(process.env.SERVER_IP, process.env.SERVER_PORT, process.env.SERVER_PASSWORD)
+    server.on('auth', function() {  
         console.log('Authenticated into the server!')
         server.send('whitelist list')
     }).on('response', function(str) {
         const users = [str.substr(33)]
-        console.log(users)
+        if(users.includes(req.params.user)) { console.log(`${req.params.user} is in the whitelist array`); }
+        console.log('Not in the array!')
     }).on('err', function(err) {
         console.log(`Error from the server ${err}`)
     }).on('end', function() {
@@ -40,6 +41,7 @@ async function whitelistPlayer(req, res, next) {
     server.connect()
     next()
 }
+
 
 
 

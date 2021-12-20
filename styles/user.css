@@ -37,7 +37,7 @@ body {
     overflow-x: hidden;
 }
 
-#form {
+form {
     min-width: 800px;
     position: static;
     margin-top: -10rem;    

@@ -7,11 +7,11 @@ html(lang='en')
     title=minecraftUsername
     .top(id='top')
       img(src=minecraftAvatar id='avatar')
-      form(id='form' method='post')
-      br
-      input(type='text' name='minecraftUsername' id='username' value=minecraftUsername readonly)
-      br
-      button(type='submit' id='status') Not Whitelisted
+      form(method='post')
+        br
+        input(type='text' name='minecraftUsername' id='username' value=minecraftUsername readonly)
+        br
+        button(type='submit' id='status') Not Whitelisted
   body
   style
     include ../../styles/main.css
