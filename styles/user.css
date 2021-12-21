@@ -100,10 +100,24 @@ form {
     transition-timing-function: ease;
 }
 
-#status:hover{
+#status:hover[value='Not Whitelisted']{
     outline:none;
     border:2px solid#ff0000;
     color:#ff0000;
+    transition-property: color, border-color;
+    -webkit-transition-property: color, border-color;
+    -moz-transition-property: color, border-color;
+    transition-duration: .25s;
+    transition-timing-function: ease;
+    font-style: normal;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+#status:hover[value='Whitelisted']{
+    outline:none;
+    border:2px solid#49c02e;
+    color:#49c02e;
     transition-property: color, border-color;
     -webkit-transition-property: color, border-color;
     -moz-transition-property: color, border-color;

@@ -18,7 +18,7 @@ router.get('/login', (req, res) => {
 // Post route for the login page
 router.post('/login', security.hashPassword, () => {})
 
-// Get Route for the users/list page that essentialy list of all the whitelisted players in json format
+// Get Route for the users/list page that essentially list of all the whitelisted players in json format
 router.get('/list', security.fetchHashedPassword, mongodb.getAllWhitelistedPlayers, () => {})
 
 // Get route for the user/failure page that gets rendered when the user enters a incorrect password for the users page
