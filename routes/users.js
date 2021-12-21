@@ -4,11 +4,10 @@ const error = require('../errors/errors')
 const mongodb = require('../database/mongo')
 const security = require('../security/security')
 
-// Get Route that essentaily is taking them to localhost:3000/users that list all the users
+// Get Route that essentially is taking them to localhost:3000/users that list all the users
 router.get('/', (req, res) => {
     res.redirect('users/login')
 })
-
 
 // Get Route for the login page that will be displayed when the user tries to go to the users page
 router.get('/login', (req, res) => {

@@ -2,11 +2,10 @@ const { MongoClient } = require('mongodb')
 const error = require('../errors/errors.json')
 const env = require('dotenv').config()
 const uri = process.env.MONGODB_URI
-const isEmpty = require('lodash.isempty')
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 
-// This method is used for creating the collection as well as creating the unique index. The unique index essentially tells the Database that those specific entries are unique and can only be inserted once.
+// This middleware function is used for creating the collection as well as creating the unique index.
 async function createUniqueIndex() {
     client.connect(err => {
         const db = client.db(process.env.DB_NAME)
@@ -16,7 +15,7 @@ async function createUniqueIndex() {
     })
 }
 
-// This method inserts the UUID of the player into the database so they can be whitelisted, if the player already exists it will just send them to that user page.
+// This middleware function inserts the UUID of the player into the database so they can be whitelisted, if the player already exists it will just send them to that user page.
 async function insertUUID(req, res, next) {
     createUniqueIndex()
     const db = client.db(process.env.DB_NAME)
@@ -35,7 +34,7 @@ async function insertUUID(req, res, next) {
 }
 
 
-// This method will get essentially list all the players in the DB and send in json form on localhost:3000/users/list page (used only for admins)
+// This middleware function will get essentially list all the players in the DB and send in json form on localhost:3000/users/list page (used only for admins)
 async function getAllWhitelistedPlayers(req, res, next) {
     const collection = client.db(process.env.DB_NAME).collection(process.env.DB_COLLECTION)
     try {
@@ -51,7 +50,7 @@ async function getAllWhitelistedPlayers(req, res, next) {
 }
 
 
-// This method is used when checking if a player exists in the DB, this is used in the get method of whitelist/user page. Redirects the user to the main whitelist page if they try to go to a user that is not in the DB 
+// This middleware function is used when checking if a player exists in the DB, this is used in the get middleware function of whitelist/user page. Redirects the user to the main whitelist page if they try to go to a user that is not in the DB 
 async function ifPlayerExists(req, res, next) {
     const collection = client.db(process.env.DB_NAME).collection(process.env.DB_COLLECTION)
     try {

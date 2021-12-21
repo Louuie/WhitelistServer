@@ -3,7 +3,7 @@ const mc = require('mc-player-api')
 const rcon = require('rcon')
 const env = require('dotenv').config()
 
-// Function used for mc-player-api --- TODO: move this to a seperate folder and .js file then require it in this and call the method in the post route of the form
+// Middleware function that gets the user UUID and stores it in a request variable
 async function getUUID(req, res, next){
     if(isEmpty(req.body.minecraftUsername)) { return res.redirect('whitelist') }
     const user = await mc.getUser(req.body.minecraftUsername)
@@ -12,7 +12,7 @@ async function getUUID(req, res, next){
     next()
 }
 
-
+// Middleware function that gets the user avatar and stores it in a request variable
 async function getAvatar(req, res, next) {
     const user = await mc.getUser(req.params.user)
     const fetchedAvatarURL = user.skin.avatar
@@ -21,6 +21,7 @@ async function getAvatar(req, res, next) {
 }
 
 
+// Middleware function that uses rcon to whitelist a player to our server
 async function whitelistPlayer(req, res, next) {
     const server = new rcon(process.env.SERVER_IP, process.env.SERVER_PORT, process.env.SERVER_PASSWORD)
     server.on('auth', function() {
@@ -37,6 +38,8 @@ async function whitelistPlayer(req, res, next) {
 }
 
 
+
+// Middleware function that retrieves the whitelist status
 async function getWhitelistStatus(req, res, next) {
     const server = new rcon(process.env.SERVER_IP, process.env.SERVER_PORT, process.env.SERVER_PASSWORD)
     server.on('auth', function() {  
