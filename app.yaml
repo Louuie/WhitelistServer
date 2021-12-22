@@ -1,0 +1,11 @@
+runtime: nodejs16
+
+env_variables:
+  DB_NAME: "whitelist"
+  DB_COLLECTION: "players"
+  MONGODB_URI: "mongodb+srv://whitelistuser:1t8knsWYtQIn3aqc@cluster0.a89qj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+  DB_ADMINUSER: "admin"
+  DB_ADMINPASSWORD: "password"
+  SERVER_IP: "107.185.51.97"
+  SERVER_PORT: "25575"
+  SERVER_PASSWORD: "password"
