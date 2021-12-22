@@ -48,9 +48,10 @@ async function getWhitelistStatus(req, res, next) {
         const users = str.substr(33)
         if(users.includes(req.params.user)) { 
             req.status = 'Whitelisted'
-            console.log(`${req.params.user} is in the whitelist array`) 
+            console.log(`${req.params.user} is in the whitelist array`)
+            return next() 
         } 
-        else { console.log(`${req.params.user} is not whitelisted`); req.status = 'Not Whitelisted' }
+        else { console.log(`${req.params.user} is not whitelisted`); req.status = 'Not Whitelisted'; return next() }
     }).on('err', function(err) {
         console.log(`Error from the server ${err}`)
     }).on('end', function() {
@@ -59,7 +60,6 @@ async function getWhitelistStatus(req, res, next) {
     })
 
     server.connect()
-    next()
 }
 
 

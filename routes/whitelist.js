@@ -16,8 +16,9 @@ router.post('/', minecraft.getUUID, mongodb.insertUUID, minecraft.whitelistPlaye
 
 // Get Route of the user URL page - used when a player tries to go the user URL page
 router.get('/:user', mongodb.ifPlayerExists, minecraft.getWhitelistStatus, minecraft.getAvatar, (req, res) => {
-    res.render('whitelist/user', {minecraftUsername: req.params.user, minecraftAvatar: req.minecraftAvatar, status: req.status})
+    res.render('whitelist/user', {minecraftUsername: req.params.user, status: req.status, minecraftAvatar: req.minecraftAvatar})
 })
+
 
 
 module.exports = router
