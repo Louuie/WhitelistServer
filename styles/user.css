@@ -82,8 +82,8 @@ form {
 }
 
 #status {
-    width: 435px;
-    height: 43px;
+    width: 420px;
+    height: 32px;
     background-color: #202020;
     font-family: proxima-nova, Helvetica, sans-serif;
     font-size: 24px;
@@ -111,7 +111,7 @@ form {
     transition-timing-function: ease;
     font-style: normal;
     font-weight: 500;
-    cursor: pointer;
+    cursor: default;
 }
 
 #status:hover[value='Whitelisted']{
@@ -125,7 +125,7 @@ form {
     transition-timing-function: ease;
     font-style: normal;
     font-weight: 500;
-    cursor: pointer;
+    cursor: default;
 }
 
 #status:focus {
