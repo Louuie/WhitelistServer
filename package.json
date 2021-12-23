@@ -17,8 +17,10 @@
     "lodash.isempty": "^4.4.0",
     "mc-player-api": "^1.0.0",
     "mongodb": "^4.2.1",
+    "path": "^0.12.7",
     "pug": "^3.0.2",
-    "rcon": "^1.1.0"
+    "rcon": "^1.1.0",
+    "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
