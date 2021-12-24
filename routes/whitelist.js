@@ -20,5 +20,10 @@ router.get('/:user', mongodb.ifPlayerExists, minecraft.getWhitelistStatus, minec
 })
 
 
+// Post Route of the user URL page - used for refreshing the players whitelist status
+router.post('/:user', minecraft.getWhitelistStatus, minecraft.getAvatar, (req, res) => {
+    res.render('whitelist/user', {minecraftUsername: req.params.user, minecraftAvatar: req.minecraftAvatar, status: req.status})
+})
+
 
 module.exports = router

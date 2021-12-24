@@ -11,6 +11,7 @@
     margin-left: auto;
     margin-right: 40rem;
     position: static;
+    margin-bottom: 20rem;
 }
 
 
@@ -19,8 +20,9 @@
     color: darkgreen;
     font-family: proxima-nova, Helvetica, sans-serif;
     font-weight: 600;
-    font-size: 22px;
-    top: 20.5rem
+    font-size: 28px;
+    margin-top: 10px;
+    margin-right: 22rem;
 }
 
 #status-txt {
@@ -28,7 +30,10 @@
     color: darkgreen;
     font-family: proxima-nova, Helvetica, sans-serif;
     font-weight: 600;
-    font-size: 22px;
+    font-size: 28px;
+    left: 35.85rem;
+    margin-top: 55px;
+    margin-right: 22rem;
 }
 
 body {
@@ -40,13 +45,13 @@ body {
 form {
     min-width: 800px;
     position: static;
-    margin-top: -10rem;    
+    margin-top: -35.5rem;    
 }
 
 #username {
     width: 420px;
     height: 32px;
-    margin: 14px;
+    margin: 28px;
     background-color: #202020;
     font-family: proxima-nova, Helvetica, sans-serif;
     font-size: 36px;
@@ -82,11 +87,11 @@ form {
 }
 
 #status {
-    width: 420px;
-    height: 32px;
+    width: 435px;
+    height: 43px;
     background-color: #202020;
     font-family: proxima-nova, Helvetica, sans-serif;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 600 !important;
     text-align: center;
     padding-left: 10px;
@@ -98,6 +103,7 @@ form {
     -moz-transition-property: color, border-color;
     transition-duration: .25s;
     transition-timing-function: ease;
+    cursor: pointer;
 }
 
 #status:hover[value='Not Whitelisted']{
@@ -111,7 +117,6 @@ form {
     transition-timing-function: ease;
     font-style: normal;
     font-weight: 500;
-    cursor: default;
 }
 
 #status:hover[value='Whitelisted']{
@@ -125,7 +130,6 @@ form {
     transition-timing-function: ease;
     font-style: normal;
     font-weight: 500;
-    cursor: default;
 }
 
 #status:focus {

@@ -6,12 +6,14 @@ html(lang='en')
     meta(name='viewport' content='width-device-width, initial-scale=1.0')
     title=minecraftUsername
     .top(id='top')
+      p(id='player-txt') Player
+      p(id='status-txt') Status
       img(src=minecraftAvatar id='avatar')
       form(method='post')
         br
         input(type='text' name='minecraftUsername' id='username' value=minecraftUsername readonly)
         br
-        input(type='text' id='status' value=status readonly)
+        button(type='submit' id='status' value=status)=status
   body
   style
     include ../../styles/main.css
