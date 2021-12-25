@@ -1,15 +1,12 @@
 const express = require('express')
 const mongodb = require('../database/mongo')
 const minecraft = require('../minecraft/minecraft')
-const twitch = require('../twitchapi/twitch')
-const isEmpty = require('lodash.isempty')
 const router = express.Router()
+
 
 // Get Route used to render the whitelist page to the user
 router.get('/', (req, res) => {
     res.render('whitelist')
-    console.log(req.query.user_read)
-    if(isEmpty(req.query.user_read)) { res.redirect('/twitch') }
 })
 
 // Post Route of the whitelist form - used for what happens when a user tries to whitelist themselves
