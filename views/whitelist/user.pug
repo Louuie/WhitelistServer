@@ -9,11 +9,11 @@ html(lang='en')
       p(id='player-txt') Player
       p(id='status-txt') Status
       img(src=minecraftAvatar id='avatar')
-      form(method='post')
+      form
         br
         input(type='text' name='minecraftUsername' id='username' value=minecraftUsername readonly)
         br
-        button(type='submit' id='status' value=status)=status
+        input(type='text' id='status' value=status)
   body
   style
     include ../../styles/main.css

@@ -8,16 +8,9 @@ const twitchapi = require('../twitchapi/twitchapi')
 router.get('/', twitchapi.prepareAuthorization, passport.authenticate('twitch'))
 
 
-router.get('/logout', twitchapi.logoutInitialization, passport.authenticate('twitch'), twitchapi.getUser, twitchapi.logUserOut, (req, res) => {
-
+router.get('/callback', twitchapi.prepareAuthorization, passport.authenticate('twitch', { failureRedirect: "/errors" }), (req, res) => {
+    res.redirect('/whitelist')
 })
-
-router.get('/logout/success', (req, res) => {
-    res.redirect('/')
-})
-
-
-
 
 
 module.exports = router

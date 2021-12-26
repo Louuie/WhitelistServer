@@ -2,12 +2,15 @@
 ✔ Add a favicon to the express node server @done(21-12-23 03:06)
 ✔ Add the button back on the user page as it seems that it works now with the Cloudflare as our DNS server. if referencing this in the future just remember that ifusing an App Engine use SSL because it way faster and will actually register request variables @done(21-12-23 14:20)
     this also includes testing on Google Cloud, so spam the button a few times
-<<<<<<< HEAD
-☐ Add more css designs to the user page, such as header tags over the players name and whitelist status @started(21-12-23 14:32)
-=======
-☐ Use Twitch API to authenticate the user to the whitelist page, we can check if the user is following me on Twitch and if they arent than tell them they can't whitelist themselves (NOTE: NOT AN EASY TASK TO DO) @started(21-12-25 11:37)
+✔ Use Twitch API to authenticate the user to the whitelist page, we can check if the user is following me on Twitch and if they arent than tell them they can't whitelist themselves (NOTE: NOT AN EASY TASK TO DO) @started(21-12-25 11:37) @done(21-12-25 21:09) @lasted(9h32m21s)
     * We can do this by using node-modules passport and passport-twitch to authenticate the user. Also note that we can passport-oauth instead of passport-twitch if one the other doesn't work
     * ^ When we complete that we need to find a way to get the access_token query from the URL once the user has completed the auth
+✔ Store the players access token in a mongodb collection so that way I can manipulate and access things without requiring the player to login into the twitch account everytime @started(21-12-25 21:11) @done(21-12-25 23:21) @lasted(2h10m19s)
+    Instead of storing the player in a collection I was able to store the token in the cookie session
+    Now the users session will last one hour from the time they logged in
+    Also added a working logout page by removing the refresh whitelist post request on the whitelist user page because I could not figure out how to have multiple post requests in the same route, so if I could some how figure that out I will add the log out button there as well
+✔ Add css designs for the twitch profile picture on the main whitelist page @started(21-12-26 00:12) @done(21-12-26 01:02) @lasted(50m6s)
+☐ Remove the Data() function in the express-session maxAge and replace it with milliseconds
 ☐ Add more css designs to the user page, such as header tags over the players name and whitelist status
->>>>>>> 241e588 (users can be authed and and users can log out; users profile picture can be fitched)
+☐ Start making the get and post requests for the twitch/user page that fetches the users, profile picture, name and allows them to logout
 ☐ Possibly start working on the users login page (NOT PRIOTY) 

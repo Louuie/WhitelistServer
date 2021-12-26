@@ -11,8 +11,7 @@ async function passportInitialization() {
         tokenURL: 'https://id.twitch.tv/oauth2/token',
         clientID: `${process.env.CLIENT_ID}`,
         clientSecret: `${process.env.CLIENT_SECRET}`,
-        callbackURL: "http://localhost:3000/whitelist/",
-        response_type: 'token',
+        callbackURL: "http://localhost:3000/twitch/callback/",
         state: true
     },
     function(accessToken, refreshToken, profile, done) {
@@ -30,35 +29,6 @@ async function passportInitialization() {
       passport.deserializeUser(function(user, done) {
         done(null, user);
       });
-}
-
-
-async function logoutInitialization(req, res, next) {
-    passport.use('twitch', new OAuth2Strategy({
-        authorizationURL: 'https://id.twitch.tv/oauth2/authorize',
-        tokenURL: 'https://id.twitch.tv/oauth2/token',
-        clientID: `${process.env.CLIENT_ID}`,
-        clientSecret: `${process.env.CLIENT_SECRET}`,
-        callbackURL: "http://localhost:3000/twitch/logout/success",
-        response_type: 'token',
-        state: true
-    },
-    function(accessToken, refreshToken, profile, done) {
-        profile.accessToken = accessToken
-        profile.refreshToken = refreshToken
-    
-        done(null, profile)
-    }
-    ))
-    
-    passport.serializeUser(function(user, done) {
-        done(null, user);
-      });
-      
-      passport.deserializeUser(function(user, done) {
-        done(null, user);
-      });
-    next()
 }
 
 
@@ -68,11 +38,7 @@ async function prepareAuthorization(req, res, next) {
 }
 
 
-
-
-
 async function getUser(req, res, next) {
-  passportInitialization()
   const options = {
       url: 'https://api.twitch.tv/helix/users',
       method: 'GET',
@@ -116,21 +82,23 @@ async function getFollowingStatus(req, res, next) {
 
 
 async function logUserOut(req, res, next) {
+    console.log(req.user.accessToken)
     const options = {
-        url: `https://id.twitch.tv/oauth2/revoke?client_id=${process.env.CLIENT_ID}&token=<access token goes here>`,
-        method: 'GET',
-        headers: {
-            'Accept': 'application/vnd.twitchtv.v5+json',
-            'Authorization': 'Bearer ' + req.token,
-            'Client-ID': process.env.CLIENT_ID
-        }
+        url: `https://id.twitch.tv/oauth2/revoke?client_id=${process.env.CLIENT_ID}&token=${req.token}`,
+        method: 'POST'
       }
-  
-      request(options, function(error, response, body) {
-          console.log(JSON.parse(body))
-      })
+      request(options, function(error, response, body) {})
+    next()
 }
 
 
 
-module.exports = { prepareAuthorization, logoutInitialization, getUser, getFollowingStatus, logUserOut }
+async function isAuthenticated(req, res, next) {
+    //console.log(req.isAuthenticated())
+    if(req.isAuthenticated()) { return next() } else { res.redirect('/twitch/callback') }
+}
+
+
+
+
+module.exports = { prepareAuthorization, getUser, getFollowingStatus, logUserOut, isAuthenticated }
