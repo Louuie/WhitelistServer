@@ -1,12 +1,23 @@
 const express = require('express')
 const mongodb = require('../database/mongo')
 const minecraft = require('../minecraft/minecraft')
+<<<<<<< HEAD
+=======
+const twitchapi = require('../twitchapi/twitchapi')
+>>>>>>> 241e588 (users can be authed and and users can log out; users profile picture can be fitched)
 const router = express.Router()
+const passport = require('passport')
+
 
 
 // Get Route used to render the whitelist page to the user
+<<<<<<< HEAD
 router.get('/', (req, res) => {
     res.render('whitelist')
+=======
+router.get('/', twitchapi.prepareAuthorization, passport.authenticate('twitch', { failureRedirect: "/errors" }), twitchapi.getUser, twitchapi.getFollowingStatus, (req, res) => {
+    res.render('whitelist', {profilepicture: req.userprofileimg})
+>>>>>>> 241e588 (users can be authed and and users can log out; users profile picture can be fitched)
 })
 
 // Post Route of the whitelist form - used for what happens when a user tries to whitelist themselves
