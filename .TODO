@@ -10,7 +10,21 @@
     Now the users session will last one hour from the time they logged in
     Also added a working logout page by removing the refresh whitelist post request on the whitelist user page because I could not figure out how to have multiple post requests in the same route, so if I could some how figure that out I will add the log out button there as well
 ✔ Add css designs for the twitch profile picture on the main whitelist page @started(21-12-26 00:12) @done(21-12-26 01:02) @lasted(50m6s)
-☐ Remove the Data() function in the express-session maxAge and replace it with milliseconds
+✔ Remove the Data() function in the express-session maxAge and replace it with milliseconds @started(21-12-26 10:25) @done(21-12-26 10:26) @lasted(1m47s)
+✔ Remove the name of 'twitchapi' as the naming could could issues with Twitch as its technically not my api and uses twitch's api; so rename the folder and file to twitch.js instead. @started(21-12-26 10:40) @done(21-12-26 10:47) @lasted(7m13s)
+    Also we could change the name of the twitch router page as well because we will probably get confused between the two if they are the same name
+✔ Figure out a way to do multiple post methods on one route instead of having to create a whole new route for twitch users that allow them to log out @started(21-12-26 20:50) @done(21-12-26 21:13) @lasted(23m14s)
+    I got to this work and the way to do it is when creating a form make the action go to another route that handles that post and in the that route we can create a post request and it will work fine
+✔ Add css designs to the logout button on the main whitelist page @started(21-12-26 22:05) @done(21-12-26 23:22) @lasted(1h17m20s)
+✔ Add a logout successful page when the user logs out instead of taking them back to the root page OR if we want we can just create a login page and when we logout it will take them there @started(21-12-26 23:26) @done(21-12-27 00:18) @lasted(52m27s)
+    Ended up making so when the user logs out and takes it directly to the login page
+☐ Add css design to the twitch login page @started(21-12-27 14:41) 
+    Most importanly we need to find a way to add the twitch login to the login button; Also we need to add a paragraph note below the login button to tell the user what we are using with there information
+✔ Move the login page route from twitch/login to just /login so that way we just use the twitch route for auth related tasks; same goes for the logout page move it to its own route; also move the main twitch auth page from just /twitch to /auth/twitch and the callback url to /auth/twitch/callback/ like the twitch documentation says to do @started(21-12-27 21:27) @done(21-12-27 21:51) @lasted(24m55s)
+✔ In the isAuthenticated function if the user isAuthenticated than we need to refresh there token to abide by twitch's terms of service @started(21-12-27 22:29) @done(21-12-27 23:22) @lasted(53m6s)
+    refreshAuthentication refreshes the users auth access token every time they refresh or sign out or whatever the case may be
 ☐ Add more css designs to the user page, such as header tags over the players name and whitelist status
-☐ Start making the get and post requests for the twitch/user page that fetches the users, profile picture, name and allows them to logout
+✘ Start making the get and post requests for the twitch/user page that fetches the users, profile picture, name and allows them to logout @cancelled(21-12-26 21:16)
+    No longer needed so we were able to make multiple forms on the main whitelist page that allows the user to logout that way instead of having to make a whole page for that
 ☐ Possibly start working on the users login page (NOT PRIOTY) 
+
