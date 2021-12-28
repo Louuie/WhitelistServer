@@ -4,18 +4,20 @@ const session = require('express-session')
 const pug = require('pug')
 const favicon = require('serve-favicon')
 const path = require('path')
-const userRouter = require('./routes/users')
-const whitelistRouter = require('./routes/whitelist')
-const twitchRouter = require('./routes/twitch')
 const passport = require('passport')
 global.dotenv = require('dotenv')
+const userRouter = require('./routes/users')
+const whitelistRouter = require('./routes/whitelist')
+const authRouter = require('./routes/auth')
+const loginRouter = require('./routes/login')
+const logoutRouter = require('./routes/logout')
 
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')))
 app.use(session({
     secret: "SESSION_SECRET", 
     resave: false, 
     saveUninitialized: false,
-    cookie: {maxAge: new Date(Date.now() + 3600000)}
+    cookie: {maxAge: 3600000}
 }))
 app.use(express.static('public'))
 app.use(express.static('images'))
@@ -27,7 +29,9 @@ app.set('view engine', 'pug')
 
 app.use('/users', userRouter)
 app.use('/whitelist', whitelistRouter)
-app.use('/twitch', twitchRouter)
+app.use('/auth', authRouter)
+app.use('/login', loginRouter)
+app.use('/logout', logoutRouter)
 
 const port = process.env.PORT || 3000
 
