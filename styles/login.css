@@ -1,0 +1,62 @@
+body {
+    text-align: center;
+    background-color: #0D0D10;
+}
+#title {
+    position: relative;
+    top: 140px;
+    right: 20px;
+    color: white;
+    font-family: Roboto, Helvetica Neue, sans-serif;
+    font-size: 4.0rem;
+    font-weight: 700;
+    line-height: 5.00rem;
+    letter-spacing: 1.3px;
+    font-weight: extra-bold;
+}
+
+#login-button {
+    position: relative;
+    right: 20px;
+    bottom: 160px;
+    background: #6000fc;
+    border: 2px solid #3f1f96;
+    border-radius: 50px;
+    color: white;
+    font-family: proxima-nova, Helvetica, sans-serif;
+    font-size: 1.6rem;
+    font-weight: 600 !important;
+    padding: 20px 32px;
+    line-height: 0.15em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition-property: color, border-color;
+    -webkit-transition-property: color, border-color;
+    -moz-transition-property: color, border-color;
+    transition-duration: .25s;
+    transition-timing-function: ease;
+}
+
+
+#login-button:hover {
+    background-color: #5800fc;
+    border-color: transparent;
+    transition-property: color, border-color;
+    -webkit-transition-property: color, border-color;
+    -moz-transition-property: color, border-color;
+    transition-duration: .25s;
+    transition-timing-function: ease;
+}
+
+
+
+form {
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+    bottom: -15rem;
+    left: 0.5rem;
+    margin: 5% auto;    
+}
