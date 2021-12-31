@@ -11,7 +11,7 @@ async function passportInitialization() {
         tokenURL: 'https://id.twitch.tv/oauth2/token',
         clientID: `${process.env.CLIENT_ID}`,
         clientSecret: `${process.env.CLIENT_SECRET}`,
-        callbackURL: "http://localhost:3000/auth/twitch/callback/",
+        callbackURL: "https://louie.gg/auth/twitch/callback/",
         state: true
     },
     function(accessToken, refreshToken, profile, done) {
