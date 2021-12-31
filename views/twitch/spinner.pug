@@ -1,0 +1,14 @@
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE-edge')
+    meta(name='viewport' content='width-device-width, initial-scale=1.0')
+    title Test Spinner
+  body(id='bg')
+  style
+    include ../../styles/main.css
+    include ../../styles/loader.css
+    include ../../styles/spinner.css
+  script(type='text/javascript' src='/login-spinner.js')
+  .lds-ring(id='ring') #[div]#[div]#[div]#[div]
+  h1(id='txt') Logging you in...

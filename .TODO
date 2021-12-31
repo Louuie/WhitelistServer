@@ -18,11 +18,18 @@
 ✔ Add css designs to the logout button on the main whitelist page @started(21-12-26 22:05) @done(21-12-26 23:22) @lasted(1h17m20s)
 ✔ Add a logout successful page when the user logs out instead of taking them back to the root page OR if we want we can just create a login page and when we logout it will take them there @started(21-12-26 23:26) @done(21-12-27 00:18) @lasted(52m27s)
     Ended up making so when the user logs out and takes it directly to the login page
-☐ Add css design to the twitch login page @started(21-12-27 14:41) 
+✔ Add css design to the twitch login page @started(21-12-27 14:41) @done(21-12-29 14:46) @lasted(2d5m15s)
     Most importanly we need to find a way to add the twitch login to the login button; Also we need to add a paragraph note below the login button to tell the user what we are using with there information
 ✔ Move the login page route from twitch/login to just /login so that way we just use the twitch route for auth related tasks; same goes for the logout page move it to its own route; also move the main twitch auth page from just /twitch to /auth/twitch and the callback url to /auth/twitch/callback/ like the twitch documentation says to do @started(21-12-27 21:27) @done(21-12-27 21:51) @lasted(24m55s)
 ✔ In the isAuthenticated function if the user isAuthenticated than we need to refresh there token to abide by twitch's terms of service @started(21-12-27 22:29) @done(21-12-27 23:22) @lasted(53m6s)
     refreshAuthentication refreshes the users auth access token every time they refresh or sign out or whatever the case may be
+✘ Move the /whitelist route to the servers root route @started(21-12-28 11:13) @cancelled(21-12-28 11:33) @wasted(20m45s)
+    Instead of moving the whole route to the root directory instead we creating a get request in the root directory that redirects the user to the whitelist page
+    Also we got rid of all static html on the server
+✔ Figure out a way to possbile add a loading bar when a page is loading so that a way user has an idea whats happening @started(21-12-29 09:45) @done(21-12-29 14:11) @lasted(4h26m3s)
+    The loading bar has to be different in certain scenarios; For example if the user is logging out have the loading bar say "Logging you out..." and vice versa for the login page
+✔ Add css design to the spinner; Also instead of adding css design to every page make a seperate css file for the spinner @started(21-12-29 14:12) @done(21-12-30 22:29) @lasted(1d8h17m2s)
+✔ Figure out a way to display that this route does not exist when user tries to go to a route that doesn't route; At the moment express just displays this with cannot GET or vice versa cannot POST; Also redirect to the root' @started(21-12-30 22:29) @done(21-12-30 22:38) @lasted(9m54s)
 ☐ Add more css designs to the user page, such as header tags over the players name and whitelist status
 ✘ Start making the get and post requests for the twitch/user page that fetches the users, profile picture, name and allows them to logout @cancelled(21-12-26 21:16)
     No longer needed so we were able to make multiple forms on the main whitelist page that allows the user to logout that way instead of having to make a whole page for that

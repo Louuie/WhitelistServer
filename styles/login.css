@@ -1,30 +1,31 @@
-body {
+ body {
     text-align: center;
     background-color: #0D0D10;
 }
 #title {
-    position: relative;
-    top: 140px;
-    right: 20px;
+    margin: 0%;
     color: white;
-    font-family: Roboto, Helvetica Neue, sans-serif;
-    font-size: 4.0rem;
+    font-family: proxima-nova, Helvetica, sans-serif;
+    font-size: 3.4rem;
     font-weight: 700;
     line-height: 5.00rem;
     letter-spacing: 1.3px;
+    position: relative;
+    top: 140px;
+    right: 11px;
     font-weight: extra-bold;
 }
 
 #login-button {
     position: relative;
     right: 20px;
-    bottom: 160px;
+    bottom: 180px;
     background: #6000fc;
     border: 2px solid #3f1f96;
     border-radius: 50px;
     color: white;
     font-family: proxima-nova, Helvetica, sans-serif;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: 600 !important;
     padding: 20px 32px;
     line-height: 0.15em;
@@ -59,4 +60,16 @@ form {
     bottom: -15rem;
     left: 0.5rem;
     margin: 5% auto;    
+}
+
+p {
+    font-family: Roboto, Helvetica Neue, sans-serif;
+    font-weight: 400 !important;
+    position: relative;
+    top: 80px;
+    left: 25rem;
+    font-size: 14px;
+    line-height: 24px;
+    max-width: 600px;
+    color: #7F7F7F
 }

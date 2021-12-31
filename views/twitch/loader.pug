@@ -1,0 +1,17 @@
+ doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE-edge')
+    meta(name='viewport' content='width-device-width, initial-scale=1.0')
+    title Twitch Auth
+  body
+  style
+    include ../../styles/main.css
+    include ../../styles/loader.css
+    include ../../styles/spinner.css 
+  loader(id='loader-bg')
+    .img(id='loader')
+    h1 Logging you in...
+  script(type='text/javascript' src='/login-spinner.js')
+   

@@ -7,9 +7,11 @@ html(lang='en')
     title Login with Twitch
   body
   style
-    include ../../styles/login.css
+    include ../../styles/main.css
+    include ../../styles/login.css 
   h1(ID='title') Whitelist Server
-  form(action='/login' method='post')
+  form(action='/login' method='post' id='login')
     br
     button(type='submit' id='login-button') Login with Twitch
     br
+  p By using the service, you are authorizing us to store your Twitch ID, username, and profile picture for elements displayed on the website and for rate limiting our API endpoints. If you would prefer to not have your data stored for purposes of DOMAINAME, do not authorize your Twitch account on DOMAINAME. You can always message a mod on discord to manually whitelist you instead.

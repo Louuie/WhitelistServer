@@ -1,0 +1,13 @@
+#txt {
+    position: relative;
+    top: 8rem;
+    left: 35rem;
+    margin: auto;
+    color: white;
+    font-family: proxima-nova, Helvetica, sans-serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    line-height: 5.00rem;
+    letter-spacing: 1.3px;
+    font-weight: extra-bold;
+}

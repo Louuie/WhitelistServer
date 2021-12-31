@@ -10,8 +10,9 @@ router.get('/twitch', twitch.prepareAuthorization, passport.authenticate('twitch
 })
 
 
-router.get('/twitch/callback', twitch.prepareAuthorization, passport.authenticate('twitch', { failureRedirect: "/errors" }), (req, res) => {
-    res.redirect('/whitelist')
+router.get('/twitch/callback', twitch.prepareAuthorization, passport.authenticate('twitch', { failureRedirect: "/auth/twitch" }), (req, res) => {
+    // I can just render a page and after a few seconds of the delay I can redirect the user
+    res.render('twitch/spinner')
 })
 
 
