@@ -11,7 +11,8 @@ async function passportInitialization() {
         tokenURL: 'https://id.twitch.tv/oauth2/token',
         clientID: `${process.env.CLIENT_ID}`,
         clientSecret: `${process.env.CLIENT_SECRET}`,
-        callbackURL: "https://louie.gg/auth/twitch/callback/",
+        callbackURL: "http://localhost:3000/auth/twitch/callback/",
+        scope: "user:read:subscriptions",
         state: true
     },
     function(accessToken, refreshToken, profile, done) {
@@ -53,13 +54,13 @@ async function getUser(req, res, next) {
         if(fetchUser.error === 'Unauthorized') { res.redirect('/login') } else {
             userData = (fetchUser.data[0])
             req.userid = userData.id
+            req.displayName = userData.display_name
             req.userprofileimg = userData.profile_image_url
             req.token = req.user.accessToken
             return next()
         }
     })
 }
-
 
 
 async function getFollowingStatus(req, res, next) {
@@ -77,8 +78,27 @@ async function getFollowingStatus(req, res, next) {
         request(options, function(error, response, body) {
             const followData = JSON.parse(body)
             console.log(followData.total)
+            console.log(followData.data[0].is_gift)
             if(followData.total === 0) { res.send("Sorry you don't have access to this webpage, please follow that person") } else { return next() }
         })
+}
+
+function getSubscriptionStatus(req, res, next) {
+    passportInitialization()
+    const options = {
+        url: `https://api.twitch.tv/helix/subscriptions/user?broadcaster_id=71092938&user_id=${req.userid}`,
+        method: 'GET',
+        headers: {
+            'Accept': 'application/vnd.twitchtv.v5+json',
+            'Authorization': 'Bearer ' + req.user.accessToken,
+            'Client-ID': process.env.CLIENT_ID
+        }
+      }
+  
+      request(options, function(error, response, body) {
+          const subscriptionData = JSON.parse(body)
+          if(subscriptionData.status === 404) { res.send("Sorry you don't have access to this webpage, please follow that person") } else { return next() }
+      })
 }
 
 
@@ -119,4 +139,4 @@ async function refreshToken(req, res, next) {
     next()
 }
 
-module.exports = { prepareAuthorization, getUser, getFollowingStatus, logUserOut, isAuthenticated, notAuthenticated, refreshToken }
+module.exports = { prepareAuthorization, getUser, getFollowingStatus, getSubscriptionStatus, logUserOut, isAuthenticated, notAuthenticated, refreshToken }

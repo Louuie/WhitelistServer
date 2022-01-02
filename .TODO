@@ -1,37 +1,46 @@
-✔ Get the website domain louie.gg finally SSL certificated through Cloudflare @done(21-12-23 03:06)
-✔ Add a favicon to the express node server @done(21-12-23 03:06)
-✔ Add the button back on the user page as it seems that it works now with the Cloudflare as our DNS server. if referencing this in the future just remember that ifusing an App Engine use SSL because it way faster and will actually register request variables @done(21-12-23 14:20)
+TODO:
+    ☐ Add more css designs to the user page, such as header tags over the players name and whitelist status; Also add a logout button as well as the twitch users profile picture to the minecraft user page
+    ☐ Possibly start working on the users login page (NOT PRIOTY)
+
+Completed:
+  ✔ Get the website domain louie.gg finally SSL certificated through Cloudflare @done(21-12-23 03:06)
+  ✔ Add a favicon to the express node server @done(21-12-23 03:06)
+  ✔ Add the button back on the user page as it seems that it works now with the Cloudflare as our DNS server. if referencing this in the future just remember that ifusing an App Engine use SSL because it way faster and will actually register request variables @done(21-12-23 14:20)
     this also includes testing on Google Cloud, so spam the button a few times
-✔ Use Twitch API to authenticate the user to the whitelist page, we can check if the user is following me on Twitch and if they arent than tell them they can't whitelist themselves (NOTE: NOT AN EASY TASK TO DO) @started(21-12-25 11:37) @done(21-12-25 21:09) @lasted(9h32m21s)
+  ✔ Use Twitch API to authenticate the user to the whitelist page, we can check if the user is following me on Twitch and if they arent than tell them they can't whitelist themselves (NOTE: NOT AN EASY TASK TO DO) @started(21-12-25 11:37) @done(21-12-25 21:09) @lasted(9h32m21s)
     * We can do this by using node-modules passport and passport-twitch to authenticate the user. Also note that we can passport-oauth instead of passport-twitch if one the other doesn't work
     * ^ When we complete that we need to find a way to get the access_token query from the URL once the user has completed the auth
-✔ Store the players access token in a mongodb collection so that way I can manipulate and access things without requiring the player to login into the twitch account everytime @started(21-12-25 21:11) @done(21-12-25 23:21) @lasted(2h10m19s)
+  ✔ Store the players access token in a mongodb collection so that way I can manipulate and access things without requiring the player to login into the twitch account everytime @started(21-12-25 21:11) @done(21-12-25 23:21) @lasted(2h10m19s)
     Instead of storing the player in a collection I was able to store the token in the cookie session
     Now the users session will last one hour from the time they logged in
     Also added a working logout page by removing the refresh whitelist post request on the whitelist user page because I could not figure out how to have multiple post requests in the same route, so if I could some how figure that out I will add the log out button there as well
-✔ Add css designs for the twitch profile picture on the main whitelist page @started(21-12-26 00:12) @done(21-12-26 01:02) @lasted(50m6s)
-✔ Remove the Data() function in the express-session maxAge and replace it with milliseconds @started(21-12-26 10:25) @done(21-12-26 10:26) @lasted(1m47s)
-✔ Remove the name of 'twitchapi' as the naming could could issues with Twitch as its technically not my api and uses twitch's api; so rename the folder and file to twitch.js instead. @started(21-12-26 10:40) @done(21-12-26 10:47) @lasted(7m13s)
+  ✔ Add css designs for the twitch profile picture on the main whitelist page @started(21-12-26 00:12) @done(21-12-26 01:02) @lasted(50m6s)
+  ✔ Remove the Data() function in the express-session maxAge and replace it with milliseconds @started(21-12-26 10:25) @done(21-12-26 10:26) @lasted(1m47s)
+  ✔ Remove the name of 'twitchapi' as the naming could could issues with Twitch as its technically not my api and uses twitch's api; so rename the folder and file to twitch.js instead. @started(21-12-26 10:40) @done(21-12-26 10:47) @lasted(7m13s)
     Also we could change the name of the twitch router page as well because we will probably get confused between the two if they are the same name
-✔ Figure out a way to do multiple post methods on one route instead of having to create a whole new route for twitch users that allow them to log out @started(21-12-26 20:50) @done(21-12-26 21:13) @lasted(23m14s)
+  ✔ Figure out a way to do multiple post methods on one route instead of having to create a whole new route for twitch users that allow them to log out @started(21-12-26 20:50) @done(21-12-26 21:13) @lasted(23m14s)
     I got to this work and the way to do it is when creating a form make the action go to another route that handles that post and in the that route we can create a post request and it will work fine
-✔ Add css designs to the logout button on the main whitelist page @started(21-12-26 22:05) @done(21-12-26 23:22) @lasted(1h17m20s)
-✔ Add a logout successful page when the user logs out instead of taking them back to the root page OR if we want we can just create a login page and when we logout it will take them there @started(21-12-26 23:26) @done(21-12-27 00:18) @lasted(52m27s)
+  ✔ Add css designs to the logout button on the main whitelist page @started(21-12-26 22:05) @done(21-12-26 23:22) @lasted(1h17m20s)
+  ✔ Add a logout successful page when the user logs out instead of taking them back to the root page OR if we want we can just create a login page and when we logout it will take them there @started(21-12-26 23:26) @done(21-12-27 00:18) @lasted(52m27s)
     Ended up making so when the user logs out and takes it directly to the login page
-✔ Add css design to the twitch login page @started(21-12-27 14:41) @done(21-12-29 14:46) @lasted(2d5m15s)
+  ✔ Add css design to the twitch login page @started(21-12-27 14:41) @done(21-12-29 14:46) @lasted(2d5m15s)
     Most importanly we need to find a way to add the twitch login to the login button; Also we need to add a paragraph note below the login button to tell the user what we are using with there information
-✔ Move the login page route from twitch/login to just /login so that way we just use the twitch route for auth related tasks; same goes for the logout page move it to its own route; also move the main twitch auth page from just /twitch to /auth/twitch and the callback url to /auth/twitch/callback/ like the twitch documentation says to do @started(21-12-27 21:27) @done(21-12-27 21:51) @lasted(24m55s)
-✔ In the isAuthenticated function if the user isAuthenticated than we need to refresh there token to abide by twitch's terms of service @started(21-12-27 22:29) @done(21-12-27 23:22) @lasted(53m6s)
+  ✔ Move the login page route from twitch/login to just /login so that way we just use the twitch route for auth related tasks; same goes for the logout page move it to its own route; also move the main twitch auth page from just /twitch to /auth/twitch and the callback url to /auth/twitch/callback/ like the twitch documentation says to do @started(21-12-27 21:27) @done(21-12-27 21:51) @lasted(24m55s)
+  ✔ In the isAuthenticated function if the user isAuthenticated than we need to refresh there token to abide by twitch's terms of service @started(21-12-27 22:29) @done(21-12-27 23:22) @lasted(53m6s)
     refreshAuthentication refreshes the users auth access token every time they refresh or sign out or whatever the case may be
-✘ Move the /whitelist route to the servers root route @started(21-12-28 11:13) @cancelled(21-12-28 11:33) @wasted(20m45s)
     Instead of moving the whole route to the root directory instead we creating a get request in the root directory that redirects the user to the whitelist page
     Also we got rid of all static html on the server
-✔ Figure out a way to possbile add a loading bar when a page is loading so that a way user has an idea whats happening @started(21-12-29 09:45) @done(21-12-29 14:11) @lasted(4h26m3s)
+  ✔ Figure out a way to possbile add a loading bar when a page is loading so that a way user has an idea whats happening @started(21-12-29 09:45) @done(21-12-29 14:11) @lasted(4h26m3s)
     The loading bar has to be different in certain scenarios; For example if the user is logging out have the loading bar say "Logging you out..." and vice versa for the login page
-✔ Add css design to the spinner; Also instead of adding css design to every page make a seperate css file for the spinner @started(21-12-29 14:12) @done(21-12-30 22:29) @lasted(1d8h17m2s)
-✔ Figure out a way to display that this route does not exist when user tries to go to a route that doesn't route; At the moment express just displays this with cannot GET or vice versa cannot POST; Also redirect to the root' @started(21-12-30 22:29) @done(21-12-30 22:38) @lasted(9m54s)
-☐ Add more css designs to the user page, such as header tags over the players name and whitelist status
-✘ Start making the get and post requests for the twitch/user page that fetches the users, profile picture, name and allows them to logout @cancelled(21-12-26 21:16)
-    No longer needed so we were able to make multiple forms on the main whitelist page that allows the user to logout that way instead of having to make a whole page for that
-☐ Possibly start working on the users login page (NOT PRIOTY) 
+  ✔ Add css design to the spinner; Also instead of adding css design to every page make a seperate css file for the spinner @started(21-12-29 14:12) @done(21-12-30 22:29) @lasted(1d8h17m2s)
+  ✔ Figure out a way to display that this route does not exist when user tries to go to a route that doesn't route; At the moment express just displays this with cannot GET or vice versa cannot POST; Also redirect to the root' @started(21-12-30 22:29) @done(21-12-30 22:38) @lasted(9m54s)
+  ✔ Possibly figure out a way to make it so a user can only whitelist one minecraft player and redirect the twitch user to there minecraft user page if there have an account attached@started(22-01-01 11:54) @done(22-01-01 14:17)
+    We can check this by storing the users twitch username or id; We can do something where we insert the users twitch id in the database when they go to the /whitelist page than we can check if that twitch user id contains a minecraft username if not than let them access the page.
+    In this case we may need to "rebuild" the database with the twitch id being the first item in the database
+  ✔ Add / Change it so that way instead of having to follow xQc you have to be subscribed to access the /whitelist & /whitelist/:user page. @started(22-01-01 22:30) @done(22-01-01 23:05) @lasted(35m30s)
 
+
+Canceled:
+    ✘ Move the /whitelist route to the servers root route @started(21-12-28 11:13) @cancelled(21-12-28 11:33) @wasted(20m45s)
+    ✘ Start making the get and post requests for the twitch/user page that fetches the users, profile picture, name and allows them to logout @cancelled(21-12-26 21:16)
+        No longer needed so we were able to make multiple forms on the main whitelist page that allows the user to logout that way instead of having to make a whole page for that

@@ -6,8 +6,9 @@ const env = require('dotenv').config()
 // Middleware function that gets the user UUID and stores it in a request variable
 async function getUUID(req, res, next){
     if(isEmpty(req.body.minecraftUsername)) { return res.redirect('whitelist') }
+    const twitch_id = req.userid
     const user = await mc.getUser(req.body.minecraftUsername)
-    req.mcuser = [{name: user.username, uuid: user.uuid}]
+    req.user = [{twitch_user_id: twitch_id, name: user.username, uuid: user.uuid}]
     req.mcname = user.username
     next()
 }

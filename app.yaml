@@ -9,3 +9,5 @@ env_variables:
   SERVER_IP: "107.185.51.97"
   SERVER_PORT: "25575"
   SERVER_PASSWORD: "password"
+  CLIENT_ID: "g444oopnb330osfaplws1ldeql18kf"
+  CLIENT_SECRET: "axj52o6b3fqc9y8n1558v8nbmnve1x"

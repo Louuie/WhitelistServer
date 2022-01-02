@@ -3,6 +3,7 @@ const router = express.Router()
 const error = require('../errors/errors')
 const mongodb = require('../database/mongo')
 const security = require('../security/security')
+const twitch = require('../twitch/twitch')
 
 // Get Route that essentially is taking them to localhost:3000/users that list all the users
 router.get('/', (req, res) => {
