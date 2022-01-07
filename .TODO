@@ -1,9 +1,12 @@
 TODO:
-    ☐ Add more css designs to the user page, such as header tags over the players name and whitelist status; Also add a logout button as well as the twitch users profile picture to the minecraft user page
-    ☐ Possibly start working on the users login page (NOT PRIOTY)
+    ☐ Replace the request node.js package and replace it with axios
+      Axios is much more effecient as the package size of it is 98% smaller than request which makes the server more effecient
+    ☐ Add more css designs to the user page, such as header tags over the players name and whitelist status; Also add a logout button as well as the twitch users profile picture to the minecraft user page @started(22-01-02 16:09)
+    ☐ Possibly start adding css to the users login page (NOT PRIOTY)
+    ☐ Find a way to create a node.js server that runs every 30 minutes to check if the user is still subscribed to the streamer; If they aren't subscribed anymore than have the node.js server remove that Player from Database as well as remove them from the whitelist.
 
 Completed:
-  ✔ Get the website domain louie.gg finally SSL certificated through Cloudflare @done(21-12-23 03:06)
+  ✔ Get the website domain louie.gg finally SSL certificated through Cloudflare @done( 21-12-23 03:06)
   ✔ Add a favicon to the express node server @done(21-12-23 03:06)
   ✔ Add the button back on the user page as it seems that it works now with the Cloudflare as our DNS server. if referencing this in the future just remember that ifusing an App Engine use SSL because it way faster and will actually register request variables @done(21-12-23 14:20)
     this also includes testing on Google Cloud, so spam the button a few times

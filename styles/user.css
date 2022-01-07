@@ -1,6 +1,64 @@
+#twitchpicture {
+    position: relative;
+    float:left;
+    width: 50px;
+    height: 50px;
+    top: 0.2rem;
+    border-radius: 50%; /* Modified*/
+    /*overflow:hidden;*/
+    border-color: transparent;
+    transition-property: color, border-color;
+    -webkit-transition-property: color, border-color;
+    -moz-transition-property: color, border-color;
+    transition-duration: .25s;
+    transition-timing-function: ease;
+}
+
+
+#logout-button {
+    position: static;
+    float: left;
+    margin-top: 10px;
+    background-color: transparent;
+    border-color: transparent;
+    color: white;
+    font-family: proxima-nova, Helvetica, sans-serif;
+    font-size: 1.7rem;
+    font-weight: 600 !important;
+    transition-property: color, border-color;
+    -webkit-transition-property: color, border-color;
+    -moz-transition-property: color, border-color;
+    transition-duration: .25s;
+    transition-timing-function: ease;
+}
+
+
+#logout-button:hover {
+    background-color: transparent;
+    border-color: transparent;
+    color: #49c02e;
+    transition-property: color, border-color;
+    -webkit-transition-property: color, border-color;
+    -moz-transition-property: color, border-color;
+    transition-duration: .25s;
+    transition-timing-function: ease;
+    cursor: pointer;
+}
+
+#logout {
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+    top: 0.2rem;
+    left: 0.3rem;
+    margin: 5% auto;
+}
+
 #top {
+    position: relative;
     background: url('https://i.imgur.com/YBRuEOR.png') !important;
     background: repeat-x; height: 173px;
+    bottom: 60px;
 }
 
 

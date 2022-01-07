@@ -6,6 +6,9 @@ html(lang='en')
     meta(name='viewport' content='width-device-width, initial-scale=1.0')
     title=minecraftUsername
     .top(id='top')
+      img(src=profilepicture id='twitchpicture')
+      form(action='/logout' method='post' id='logout')
+        button(type='submit' id='logout-button') Logout
       p(id='player-txt') Player
       p(id='status-txt') Status
       img(src=minecraftAvatar id='avatar')

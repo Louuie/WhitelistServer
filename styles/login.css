@@ -66,10 +66,10 @@ p {
     font-family: Roboto, Helvetica Neue, sans-serif;
     font-weight: 400 !important;
     position: relative;
-    top: 80px;
-    left: 25rem;
+    text-align: center;
     font-size: 14px;
     line-height: 24px;
-    max-width: 600px;
+    max-width: 20%;
+    min-width: 600px;
     color: #7F7F7F
 }

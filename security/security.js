@@ -3,8 +3,9 @@ const bcrypt = require('bcrypt')
 const error = require('../errors/errors.json')
 const users = []
 
+
 // Middleware function that hashes the users password - used in the post method of the users login page
-async function hashPassword(req, res, next) {
+const hashPassword = async (req, res, next) => {
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10)
         const hashedUser = {name: req.body.username, password: hashedPassword}
@@ -28,15 +29,15 @@ async function hashPassword(req, res, next) {
     } catch {
         res.status(500).send()
     }
-}
+};
 
 // Middleware function that checks if the hashPassword is correct - used in the get method of the users/list page
-async function fetchHashedPassword(req, res, next) {
+const fetchHashedPassword = async (req, res, next) => {
     if(req.query.user === null && req.user.id === null) return res.redirect('users/login')
     if(req.query.username === process.env.DB_ADMINUSER && await bcrypt.compare(process.env.DB_ADMINPASSWORD, req.query.id)){
         next()
     } else { res.send('You do not have permission to view this page!') }
-}
+};
 
 
 module.exports = {hashPassword, fetchHashedPassword}

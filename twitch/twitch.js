@@ -2,10 +2,10 @@ const passport = require('passport')
 const request = require('request')
 const OAuth2Strategy = require('passport-oauth').OAuth2Strategy
 const dotenv = require('dotenv').config()
+const minecraft = require('../minecraft/minecraft')
 let userData = {  }
 
-
-async function passportInitialization() {
+const passportInitialization = () => {
     passport.use('twitch', new OAuth2Strategy({
         authorizationURL: 'https://id.twitch.tv/oauth2/authorize',
         tokenURL: 'https://id.twitch.tv/oauth2/token',
@@ -25,30 +25,27 @@ async function passportInitialization() {
     
     passport.serializeUser(function(user, done) {
         done(null, user);
-      });
+    });
       
       passport.deserializeUser(function(user, done) {
         done(null, user);
-      });
-}
+    });
+};
 
-
-async function prepareAuthorization(req, res, next) {
+const prepareAuthorization = (req, res, next) => {
     passportInitialization()
-    next()
-}
+    next()   
+};
 
-
-async function getUser(req, res, next) {
-  const options = {
-      url: 'https://api.twitch.tv/helix/users',
-      method: 'GET',
-      headers: {
-          'Client-ID': process.env.CLIENT_ID,
-          'Authorization': 'Bearer ' + req.user.accessToken
-      }
+const getUser = (req, res, next) => {
+    const options = {
+        url: 'https://api.twitch.tv/helix/users',
+        method: 'GET',
+        headers: {
+            'Client-ID': process.env.CLIENT_ID,
+            'Authorization': 'Bearer ' + req.user.accessToken
+        }
     }
-
     request(options, function(error, response, body) {
         const fetchUser = JSON.parse(body)
         if(fetchUser.error === 'Unauthorized') { res.redirect('/login') } else {
@@ -60,30 +57,29 @@ async function getUser(req, res, next) {
             return next()
         }
     })
-}
+};
 
-
-async function getFollowingStatus(req, res, next) {
+const getFollowingStatus = (req, res, next) => {
     passportInitialization()
-      const options = {
-          url: `https://api.twitch.tv/helix/users/follows?from_id=${req.userid}&to_id=71092938`,
-          method: 'GET',
-          headers: {
-              'Accept': 'application/vnd.twitchtv.v5+json',
-              'Authorization': 'Bearer ' + req.user.accessToken,
-              'Client-ID': process.env.CLIENT_ID
-          }
+    const options = {
+        url: `https://api.twitch.tv/helix/users/follows?from_id=${req.userid}&to_id=71092938`,
+        method: 'GET',
+        headers: {
+            'Accept': 'application/vnd.twitchtv.v5+json',
+            'Authorization': 'Bearer ' + req.user.accessToken,
+            'Client-ID': process.env.CLIENT_ID
         }
-    
-        request(options, function(error, response, body) {
-            const followData = JSON.parse(body)
-            console.log(followData.total)
-            console.log(followData.data[0].is_gift)
-            if(followData.total === 0) { res.send("Sorry you don't have access to this webpage, please follow that person") } else { return next() }
-        })
-}
+      }
+  
+      request(options, function(error, response, body) {
+          const followData = JSON.parse(body)
+          console.log(followData.total)
+          console.log(followData.data[0].is_gift)
+          if(followData.total === 0) { res.send("Sorry you don't have access to this webpage, please follow that person") } else { return next() }
+    })
+};
 
-function getSubscriptionStatus(req, res, next) {
+const getSubscriptionStatus = (req, res, next) => {
     passportInitialization()
     const options = {
         url: `https://api.twitch.tv/helix/subscriptions/user?broadcaster_id=71092938&user_id=${req.userid}`,
@@ -97,13 +93,11 @@ function getSubscriptionStatus(req, res, next) {
   
       request(options, function(error, response, body) {
           const subscriptionData = JSON.parse(body)
-          if(subscriptionData.status === 404) { res.send("Sorry you don't have access to this webpage, please follow that person") } else { return next() }
-      })
-}
+          if(subscriptionData.status === 404) { minecraft.removeWhitelistedPlayer(req.mcname); res.send("Sorry you don't have access to this webpage, please subscribe to xQcOW on twitch.tv to access this page"); } else { return next() }
+    })
+};
 
-
-
-async function logUserOut(req, res, next) {
+const logUserOut = (req, res, next) => {
     const options = {
         url: `https://id.twitch.tv/oauth2/revoke?client_id=${process.env.CLIENT_ID}&token=${req.token}`,
         method: 'POST'
@@ -111,23 +105,22 @@ async function logUserOut(req, res, next) {
       request(options, function(error, response, body) {
           req.session.destroy(function (err) {
               res.redirect('/login')
-          })
-      })
+        })
+    })
     next()
-}
+};
 
-
-async function isAuthenticated(req, res, next) {
+const isAuthenticated = (req, res, next) => {
     //console.log(`first token ${req.user.accessToken}`)
     if(req.isAuthenticated()) { return next() } else { res.redirect('/login') }
-}
+};
 
-async function notAuthenticated(req, res, next) {
+const notAuthenticated = (req, res, next) => {
     console.log(`Visiting the login page status ${req.isAuthenticated()}`)
     if(req.isUnauthenticated()) { return next() } else { res.redirect('/whitelist') }
-}
+};
 
-async function refreshToken(req, res, next) {
+const refreshToken = (req, res, next) => {
     const options = {
         url: `https://id.twitch.tv/oauth2/token?grant_type=refresh_token&refresh_token=${req.user.refreshToken}&client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}`,
         method: 'POST'
@@ -137,6 +130,7 @@ async function refreshToken(req, res, next) {
         req.user.accessToken = refreshData.access_token
       })
     next()
-}
+};
+
 
 module.exports = { prepareAuthorization, getUser, getFollowingStatus, getSubscriptionStatus, logUserOut, isAuthenticated, notAuthenticated, refreshToken }
