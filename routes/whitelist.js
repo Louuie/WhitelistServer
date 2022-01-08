@@ -24,7 +24,7 @@ router.get('/:user', twitch.isAuthenticated, twitch.refreshToken, twitch.getUser
 
 
 // Post Route of the user URL page - used for refreshing the players whitelist status
-router.post('/:user', twitch.isAuthenticated, twitch.refreshToken, twitch.getUser, twitch.getSubscriptionStatus, minecraft.getWhitelistStatus, minecraft.getAvatar, (req, res) => {
+router.post('/:user', twitch.isAuthenticated, twitch.getUser, twitch.getSubscriptionStatus, minecraft.getWhitelistStatus, minecraft.getAvatar, (req, res) => {
     res.render('whitelist/user', {minecraftUsername: req.params.user, minecraftAvatar: req.minecraftAvatar, status: req.status, profilepicture: req.userprofileimg})
 })
 

@@ -1,5 +1,8 @@
 TODO:
-    ☐ Replace the request node.js package and replace it with axios
+    ☐ Replace the mc-player-api with my own "API"
+      Use axios to get the UUID from the mojang API, than pass that UUID to craftavatar to use axios to fetch the users minecraft avatar
+    ✔ Replace the request node.js package and replace it with axios @started(22-01-07 20:01) @done(22-01-07 20:26) @lasted(25m52s)
+      Technically I did this but for some reason I could not figure out how to URL encode the refresh token so I always get can error so I'm still having to use the request library to refresh the access token; But if I can figure this out than update the refreshToken middleware function to use axios instead of request
       Axios is much more effecient as the package size of it is 98% smaller than request which makes the server more effecient
     ☐ Add more css designs to the user page, such as header tags over the players name and whitelist status; Also add a logout button as well as the twitch users profile picture to the minecraft user page @started(22-01-02 16:09)
     ☐ Possibly start adding css to the users login page (NOT PRIOTY)
