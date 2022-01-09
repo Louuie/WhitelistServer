@@ -1,9 +1,11 @@
 const passport = require('passport');
 const axios = require('axios');
+const qs = require('qs')
 const request = require('request');
 const OAuth2Strategy = require('passport-oauth').OAuth2Strategy;
 const dotenv = require('dotenv').config();
 const minecraft = require('../minecraft/minecraft');
+const { URLSearchParams } = require('url');
 let userData = {  };
 
 const passportInitialization = () => {
@@ -129,12 +131,12 @@ const refreshToken = (req, res, next) => {
     const options = {
         url: `https://id.twitch.tv/oauth2/token?grant_type=refresh_token&refresh_token=${req.user.refreshToken}&client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}`,
         method: 'POST'
-      }
+    }
       request(options, function(error, response, body) {
         const refreshData = JSON.parse(body)
         req.user.accessToken = refreshData.access_token
         return next()
-      })
+    })
 };
 
 const isAuthenticated = (req, res, next) => {

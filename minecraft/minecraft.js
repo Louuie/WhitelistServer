@@ -1,24 +1,34 @@
 const isEmpty = require('lodash.isempty')
 const mc = require('mc-player-api')
+const axios = require('axios')
 const rcon = require('rcon')
 const env = require('dotenv').config()
 
+const getUserInformation = async (username) => {
+    try {
+        const response = await axios.get(`https://api.mojang.com/users/profiles/minecraft/${username}`)
+        return response.data
+    } catch (err) { console.log(err) }
+}
+
+
+
 // Middleware function that gets the user UUID and stores it in a request variable
-const getUUID = async (req, res, next) => {
+const storeUUID = async (req, res, next) => {
     if(isEmpty(req.body.minecraftUsername)) { return res.redirect('whitelist') }
-    const twitch_id = req.userid
-    const user = await mc.getUser(req.body.minecraftUsername)
-    req.user = [{twitch_user_id: twitch_id, name: user.username, uuid: user.uuid}]
-    req.mcname = user.username
-    next()
+    const user = getUserInformation(req.body.minecraftUsername)
+    user.then(function (response) {
+        const twitch_id = req.userid
+        req.user = [{twitch_user_id: twitch_id, name: response.name, uuid: response.id}]
+        req.mcname = response.name
+        next()
+    })
 };
 
 // Middleware function that gets the user avatar and stores it in a request variable
 const getAvatar = async (req, res, next) => {
-    const user = await mc.getUser(req.params.user)
-    const fetchedAvatarURL = user.skin.avatar
-    req.minecraftAvatar = fetchedAvatarURL
-    next()
+    const user = getUserInformation(req.params.user)
+    user.then(function (response) { req.minecraftAvatar = `https://crafatar.com/avatars/${response.id}`; next()})
 };
 
 // Middleware function that uses rcon to whitelist a player to our server
@@ -77,4 +87,4 @@ const getWhitelistStatus = (req, res, next) => {
 };
 
 
-module.exports = {getUUID, getAvatar, getWhitelistStatus, whitelistPlayer, removeWhitelistedPlayer}
+module.exports = {storeUUID, getAvatar, getWhitelistStatus, whitelistPlayer, removeWhitelistedPlayer}

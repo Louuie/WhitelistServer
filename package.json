@@ -25,6 +25,7 @@
     "passport-twitch": "^1.0.3",
     "path": "^0.12.7",
     "pug": "^3.0.2",
+    "qs": "^6.10.2",
     "rcon": "^1.1.0",
     "request": "^2.88.2",
     "serve-favicon": "^2.5.0",

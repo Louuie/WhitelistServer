@@ -22,8 +22,8 @@ const insertUUID = async (req, res, next) => {
     const collection = db.collection(process.env.DB_COLLECTION)
     try {
         await client.connect()
+        console.log(`Twitch user ${req.displayName} with minecraft name ${req.mcname} has been inserted!`)
         await collection.insertMany(req.user)
-        console.log(`Twitch user ${req.displayName}(${twitch_id}) with minecraft name ${req.mcname} has been inserted!`)
         await client.close()
         return next()
     } catch(err) {
@@ -69,7 +69,6 @@ const twitchIDExists = async (req, res, next) => {
     try {
         await client.connect()
         collection.find({twitch_user_id: req.userid}, {projection: { _id: 0, twitch_user_id: 1, name: 1, uuid: 1}}).toArray(function(err, result) {
-            req.mcuser = result[0].name
             if(isEmpty(result)) {
                 return next()
             } else { res.redirect(`/whitelist/${result[0].name}`) }

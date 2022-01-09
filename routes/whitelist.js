@@ -12,7 +12,7 @@ router.get('/', twitch.isAuthenticated, twitch.refreshToken, twitch.getUser, mon
 })
 
 // Post Route of the whitelist form - used for what happens when a user tries to whitelist themselves
-router.post('/', twitch.isAuthenticated, twitch.refreshToken, twitch.getUser, minecraft.getUUID, mongodb.insertUUID, minecraft.whitelistPlayer, (req, res) => {
+router.post('/', twitch.isAuthenticated, twitch.refreshToken, twitch.getUser, minecraft.storeUUID, mongodb.insertUUID, minecraft.whitelistPlayer, (req, res) => {
     res.redirect(`whitelist/${req.body.minecraftUsername}`)
 })
 
